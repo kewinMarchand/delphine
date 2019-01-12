@@ -121,7 +121,6 @@ class Contact extends React.Component {
                                         id="message"
                                         name="message"
                                         label="VOTRE MESSAGE"
-                                        type="text"
                                         className={classes.textField}
                                         value={this.state.message}
                                         onChange={this.handleChange('message')}
