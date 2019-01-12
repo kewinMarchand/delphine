@@ -25,9 +25,11 @@
     
   </head>
   <body style="min-height: 100vh;">
+
     <noscript>Vous devez activer JavaScript pour voir ce site.</noscript>
-    <form name="contact" data-netlify-recaptcha="true" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <input name="bot-field" />
+
+    <!-- A little help for the Netlify post-processing bots -->
+    <form name="contact" netlify hidden>
       <input type="text" name="name" />
       <input type="email" name="email" />
       <input type="text" name="fonction" />
@@ -39,6 +41,8 @@
       </select>
       <textarea name="message"></textarea>
     </form>
+
     <div id="root"></div>
+    
   </body>
 </html>
