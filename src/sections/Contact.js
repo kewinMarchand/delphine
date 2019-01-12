@@ -2,11 +2,25 @@ import React from 'react'
 import Form from '../components/Form'
 import {Grid, TextField} from '@material-ui/core/'
 
-const styles = theme => ({
-    textField: {
-        marginBottom: theme.spacing.unit * 2,
-    },
-})
+const SrhInput = (props) => {
+    return (
+        <TextField
+            {...props}
+            required
+            id={props.name}
+            label= {"VOTRE  " + (props.name).toUpperCase()}
+            margin="normal"
+            variant="outlined"
+            style={{marginBottom: 16}}
+        />          
+    )
+}
+
+const options = [
+    "Formation & Conseil",
+    "Formation",
+    "Conseil"
+]
 
 class Contact extends React.Component {
     state = {
@@ -14,7 +28,7 @@ class Contact extends React.Component {
         email: undefined,
         fonction: undefined,
         telephone: undefined,
-        demande: "Formation &amp; Conseil",
+        demande: options[0],
         message: undefined,
     };
     
@@ -25,66 +39,49 @@ class Contact extends React.Component {
     }
 
     render() {
-        const {nom, email, fonction, telephone, demande, message} = this.state,
-        SrhInput = (props) => {
-            return (
-                <TextField
-                    required
-                    id={props.name}
-                    margin="normal"
-                    variant="outlined"
-                    {...props}
-                    onChange={this.handleChange(props.name)}
-                />          
-            )
-        }
-
+        const {nom, email, fonction, telephone, demande, message} = this.state
         return (
             <Form>
                 <Grid container direction="column" justify="flex-end">
                     <SrhInput
                         name="nom"
-                        label="VOTRE NOM"
                         type="text"
                         value={nom}
+                        onChange={this.handleChange("nom")}
                     />
                     <SrhInput
                         name="email"
-                        label="VOTRE EMAIL"
                         type="email"      
                         value={email}
-                    
+                        onChange={this.handleChange("email")}
                     />
                     <SrhInput
                         name="fonction"
-                        label="VOTRE FONCTION"
                         type="text"
                         value={fonction}
+                        onChange={this.handleChange("fonction")}
                     />
                     <SrhInput
                         name="telephone"
-                        label="VOTRE TÉLÉPHONE"
                         type="tel"
                         value={telephone}
+                        onChange={this.handleChange("telephone")}
                     />
                     <SrhInput
                         name="demande"
-                        label="VOTRE DEMANDE"
                         value={demande}
+                        onChange={this.handleChange("demande")}
                         select
-                        SelectProps={{
-                            native: true,
-                        }}
+                        SelectProps={{native: true}}
                     >
-                        <option value="Formation &amp; Conseil">Formation &amp; Conseil</option >
-                        <option value="Formation">Formation</option >
-                        <option value="Conseil">Conseil</option >
+                        {options.map(option => (
+                                <option value={option}>{option}</option >
+                        ))}
                     </SrhInput>
                     <SrhInput
                         name="message"
-                        label="VOTRE MESSAGE"
                         value={message}
-                        onChange={this.handleChange('message')}
+                        onChange={this.handleChange("message")}
                         multiline
                         rows="6"
                     />
