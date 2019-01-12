@@ -17,13 +17,25 @@ const styles = theme => ({
     },
 })
 
+const SrhInput = (props) => {
+    return (
+        <TextField
+            required
+            id={props.name}
+            margin="normal"
+            variant="outlined"
+            {...props}
+        />          
+    )
+}
+
 class Contact extends React.Component {
     state = {
-        fullName: undefined,
+        nom: undefined,
         email: undefined,
         function: undefined,
-        phone: undefined,
-        request: "Formation &amp; Conseil",
+        telephone: undefined,
+        demande: "Formation &amp; Conseil",
         message: undefined,
     };
     
@@ -32,6 +44,8 @@ class Contact extends React.Component {
             [name]: event.target.value,
         });
     }
+
+    
 
     render() {
         const {classes} = this.props
@@ -46,64 +60,40 @@ class Contact extends React.Component {
                             >
                                 <input type="hidden" name="form-name" value="contact"/>
                                 <Grid container direction="column" justify="flex-end">
-                                    <TextField
-                                        required
-                                        id="fullName"
+                                    <SrhInput
                                         name="nom"
                                         label="VOTRE NOM"
                                         type="text"
-                                        className={classes.textField}
-                                        value={this.state.name}
-                                        onChange={this.handleChange('fullName')}
-                                        margin="normal"
-                                        variant="outlined"
+                                        value={this.state.nom}
+                                        onChange={this.handleChange('nom')}
                                     />
-                                    <TextField
-                                        required
-                                        id="email"
+                                    <SrhInput
                                         name="email"
                                         label="VOTRE EMAIL"
-                                        type="email"
-                                        className={classes.textField}
+                                        type="email"      
                                         value={this.state.email}
                                         onChange={this.handleChange('email')}
-                                        margin="normal"
-                                        variant="outlined"
+                                 
                                     />
-                                    <TextField
-                                        required
-                                        id="fonction"
+                                    <SrhInput
                                         name="fonction"
                                         label="VOTRE FONCTION"
                                         type="text"
-                                        className={classes.textField}
                                         value={this.state.function}
                                         onChange={this.handleChange('function')}
-                                        margin="normal"
-                                        variant="outlined"
                                     />
-                                    <TextField
-                                        required
-                                        id="telephone"
+                                    <SrhInput
                                         name="telephone"
                                         label="VOTRE TÉLÉPHONE"
                                         type="tel"
-                                        className={classes.textField}
                                         value={this.state.phone}
-                                        onChange={this.handleChange('phone')}
-                                        margin="normal"
-                                        variant="outlined"
+                                        onChange={this.handleChange('telephone')}
                                     />
-                                    <TextField
-                                        required
-                                        id="demande"
+                                    <SrhInput
                                         name="demande"
                                         label="VOTRE DEMANDE"
-                                        className={classes.textField}
                                         value={this.state.request}
-                                        onChange={this.handleChange('request')}
-                                        margin="normal"
-                                        variant="outlined"
+                                        onChange={this.handleChange('demande')}
                                         select
                                         SelectProps={{
                                             native: true,
@@ -115,17 +105,12 @@ class Contact extends React.Component {
                                         <option value="Formation &amp; Conseil">Formation &amp; Conseil</option >
                                         <option value="Formation">Formation</option >
                                         <option value="Conseil">Conseil</option >
-                                    </TextField>
-                                    <TextField
-                                        required
-                                        id="message"
+                                    </SrhInput>
+                                    <SrhInput
                                         name="message"
                                         label="VOTRE MESSAGE"
-                                        className={classes.textField}
                                         value={this.state.message}
                                         onChange={this.handleChange('message')}
-                                        margin="normal"
-                                        variant="outlined"
                                         multiline
                                         rows="6"
                                     />
