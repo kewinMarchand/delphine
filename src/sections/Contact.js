@@ -49,7 +49,7 @@ class Contact extends React.Component {
                                     <TextField
                                         required
                                         id="fullName"
-                                        name="fullName"
+                                        name="nom"
                                         label="VOTRE NOM"
                                         type="text"
                                         className={classes.textField}

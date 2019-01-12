@@ -29,8 +29,10 @@
     <noscript>Vous devez activer JavaScript pour voir ce site.</noscript>
 
     <!-- A little help for the Netlify post-processing bots -->
-    <form name="contact" netlify hidden>
-      <input type="text" name="fullName" />
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <div data-netlify-recaptcha="true"></div>
+      <input name="bot-field" />
+      <input type="text" name="nom" />
       <input type="email" name="email" />
       <input type="text" name="fonction" />
       <input type="tel" name="telephone" />
@@ -40,6 +42,7 @@
         <option value="Conseil"></option>
       </select>
       <textarea name="message"></textarea>
+
     </form>
 
     <div id="root"></div>
