@@ -40,7 +40,7 @@ class Contact extends React.Component {
                 <Grid item xs={12}>    
                     <Card className={classes.card}>
                         <CardContent>
-                            <form netlify form-name="contact" method="post"
+                            <form netlify name="contact" method="post"
                                 className={classes.form} 
                                 autoComplete="off"
                             >
