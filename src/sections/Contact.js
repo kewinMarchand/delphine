@@ -19,7 +19,7 @@ const styles = theme => ({
 
 class Contact extends React.Component {
     state = {
-        name: undefined,
+        fullName: undefined,
         email: undefined,
         function: undefined,
         phone: undefined,
@@ -48,13 +48,13 @@ class Contact extends React.Component {
                                 <Grid container direction="column" justify="flex-end">
                                     <TextField
                                         required
-                                        id="name"
-                                        name="name"
+                                        id="fullName"
+                                        name="fullName"
                                         label="VOTRE NOM"
                                         type="text"
                                         className={classes.textField}
                                         value={this.state.name}
-                                        onChange={this.handleChange('name')}
+                                        onChange={this.handleChange('fullName')}
                                         margin="normal"
                                         variant="outlined"
                                     />
