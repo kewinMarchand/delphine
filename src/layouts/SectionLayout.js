@@ -26,10 +26,13 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 4,
   },
   contentContainer: {
-    ...theme.mixins.gutters(),
     margin: 'auto',
     marginBottom: theme.spacing.unit * 4,
-    maxWidth: 1280,
+    maxWidth: '85%',
+    [theme.breakpoints.up('lg')]: {
+      ...theme.mixins.gutters(),
+      maxWidth: 1280,
+    }
   }
 })
 

@@ -15,6 +15,12 @@ const styles = theme => ({
     height: theme.spacing.unit * 20,
     width: theme.spacing.unit * 20,
   },
+  card: {
+    marginBottom: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
+    paddingTop: theme.spacing.unit * 4,
+  },
   cardContent: {
     minHeight: theme.spacing.unit * 15,
   },
@@ -46,7 +52,7 @@ class About extends Component {
         </Grid>
 
         <Grid item xs={12} md={4} align="center" className={classes.card}>
-          <Card raised>
+          <Card raised  className={classes.card}>
             <CardMedia
               image={doc.image_carte__a_propos.url}
               className={classes.media}

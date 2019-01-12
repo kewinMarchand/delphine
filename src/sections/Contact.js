@@ -31,7 +31,7 @@ class Contact extends React.Component {
         this.setState({
             [name]: event.target.value,
         });
-    };
+    }
 
     render() {
         const {classes} = this.props
@@ -40,15 +40,16 @@ class Contact extends React.Component {
                 <Grid item xs={12}>    
                     <Card className={classes.card}>
                         <CardContent>
-                            <form 
+                            <form netlify form-name="contact" method="post"
                                 className={classes.form} 
-                                noValidate 
                                 autoComplete="off"
                             >
+                                <input type="hidden" name="form-name" value="contact"/>
                                 <Grid container direction="column" justify="flex-end">
                                     <TextField
                                         required
                                         id="name"
+                                        name="name"
                                         label="VOTRE NOM"
                                         type="text"
                                         className={classes.textField}
@@ -60,6 +61,7 @@ class Contact extends React.Component {
                                     <TextField
                                         required
                                         id="email"
+                                        name="email"
                                         label="VOTRE EMAIL"
                                         type="email"
                                         className={classes.textField}
@@ -71,6 +73,7 @@ class Contact extends React.Component {
                                     <TextField
                                         required
                                         id="fonction"
+                                        name="fonction"
                                         label="VOTRE FONCTION"
                                         type="text"
                                         className={classes.textField}
@@ -82,6 +85,7 @@ class Contact extends React.Component {
                                     <TextField
                                         required
                                         id="telephone"
+                                        name="telephone"
                                         label="VOTRE TÉLÉPHONE"
                                         type="tel"
                                         className={classes.textField}
@@ -93,6 +97,7 @@ class Contact extends React.Component {
                                     <TextField
                                         required
                                         id="demande"
+                                        name="demande"
                                         label="VOTRE DEMANDE"
                                         className={classes.textField}
                                         value={this.state.request}
@@ -113,7 +118,8 @@ class Contact extends React.Component {
                                     </TextField>
                                     <TextField
                                         required
-                                        id="standard-required"
+                                        id="message"
+                                        name="message"
                                         label="VOTRE MESSAGE"
                                         type="text"
                                         className={classes.textField}
@@ -125,17 +131,18 @@ class Contact extends React.Component {
                                         rows="6"
                                     />
                                 </Grid>
+                                <CardActions>
+                                    <Grid container justify="flex-end">
+                                        <Button 
+                                            variant="contained"
+                                            color="primary"
+                                            type="submit"
+                                        >
+                                            envoyer
+                                        </Button>
+                                    </Grid>
+                                </CardActions>
                             </form>
-                            <CardActions>
-                                <Grid container justify="flex-end">
-                                    <Button 
-                                        variant="contained"
-                                        color="primary"
-                                    >
-                                        envoyer
-                                    </Button>
-                                </Grid>
-                            </CardActions>
                             <Typography variant="caption" align="right">
                                 * champ obligatoire
                             </Typography>  

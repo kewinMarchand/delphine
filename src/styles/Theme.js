@@ -163,6 +163,10 @@ export default createMuiTheme({
     overrides: {
         MuiButton: {
             root: {
+                borderRadius: 5,
+                letterSpacing: 1,
+                lineHeight: '1.5rem',
+                padding: '.55rem 1.5rem',
                 '&:hover':{
                     backgroundColor: palette.primary.alpha,
                     backgroundBlendMode: 'mix',

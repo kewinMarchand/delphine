@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
 
 import {Provider} from 'react-redux'
-import Store from '../store/configureStore'
+import store from '../store/configureStore'
 
 import {MuiThemeProvider, CssBaseline, Grid, withStyles} from '@material-ui/core/'
 import theme from '../styles/Theme'
@@ -18,16 +18,16 @@ const styles = theme => ({
 
 class AppLayout extends Component {
   render() {
-    const {classes} = this.props
+    const {classes, children} = this.props
       return (
-        <Provider store={Store}>
+        <Provider store={store}>
           <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <Router>
               <React.Fragment>
                 <Nav/>
                 <Grid container className={classes.container}>
-                  {this.props.children}
+                  {children}
                 </Grid>
                 <Footer/>
               </React.Fragment>
