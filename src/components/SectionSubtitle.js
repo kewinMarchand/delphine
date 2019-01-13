@@ -19,7 +19,7 @@ class SectionSubtitle extends Component {
         className={`${classes.subtitle} ${white ? classes.whiteSubtitle : ''}`}
       >  
         <Typography 
-          variant="subheading" 
+          variant="h5"
           align="center"
           color="inherit"
         >

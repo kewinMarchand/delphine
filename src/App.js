@@ -2,12 +2,11 @@ import React from 'react'
 import AppLayout from './layouts/AppLayout'
 import Routes from './routes/Routes'
 
-function App(props) {
-  
+function App() {
   return (
     <AppLayout>
       <Routes/>
-    </AppLayout>          
+    </AppLayout>
   );
 }
 

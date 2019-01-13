@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import { withStyles} from '@material-ui/core/'
+import {withStyles, Typography} from '@material-ui/core/'
 
 const styles = theme => ({
   link: {
@@ -17,16 +17,26 @@ const styles = theme => ({
       color: theme.palette.secondary.main,
     }
   },
+    span: {
+      display: 'inline-block',
+    }
 });
 
 function SrhLink(props) {
-  const { classes, to, text, primary } = props;
+  const { classes, to, text, primary, variant} = props;
   return (
-    <Link 
+    <Link
       to={to}  
       className={`${classes.link} ${primary ? classes.linkPrimary : ''}`}
     >
-      {text}
+      <Typography
+          component="span"
+          color="inherit"
+          variant={variant ? variant : "body1"}
+          className={classes.span}
+      >
+          {text}
+      </Typography>
     </Link>
   );
 }

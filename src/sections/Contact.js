@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from '../components/Form'
+import FormContainer from '../components/FormContainer'
 import {Grid, TextField} from '@material-ui/core/'
 
 const SrhInput = (props) => {
@@ -41,7 +41,7 @@ class Contact extends React.Component {
     render() {
         const {nom, email, fonction, telephone, demande, message} = this.state
         return (
-            <Form>
+            <FormContainer>
                 <Grid container direction="column" justify="flex-end">
                     <SrhInput
                         name="nom"
@@ -74,8 +74,8 @@ class Contact extends React.Component {
                         select
                         SelectProps={{native: true}}
                     >
-                        {options.map(option => (
-                                <option value={option}>{option}</option >
+                        {options.map((option, i) => (
+                                <option key={i} value={option}>{option}</option>
                         ))}
                     </SrhInput>
                     <SrhInput
@@ -86,7 +86,7 @@ class Contact extends React.Component {
                         rows="6"
                     />
                 </Grid>
-            </Form>
+            </FormContainer>
         );
     }
 }

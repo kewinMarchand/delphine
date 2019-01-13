@@ -31,7 +31,7 @@ class ArticlePreview extends Component {
           />
           <CardContent>
             <Typography 
-              variant="display1" 
+              variant="h4"
             >
               {RichText.asText(data.titre)}
             </Typography>

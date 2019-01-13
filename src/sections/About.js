@@ -43,7 +43,7 @@ class About extends Component {
         className={classes.about}
       >
         <Grid item xs={12} md={8}>
-          <Typography variant="display3" align="center" className={classes.title}>
+          <Typography variant="h2" align="center" className={classes.title}>
             {doc.titre_a_propos[0].text}
           </Typography>
           <Typography variant="body1" align="center">

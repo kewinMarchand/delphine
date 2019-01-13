@@ -4,8 +4,10 @@ import {withStyles, Button, Card, CardActions, CardContent, Grid, Typography} fr
 const styles = theme => ({
     card: {
         ...theme.mixins.gutters(),
+        margin: 'auto',
         marginBottom: theme.spacing.unit * 12,
         marginTop: theme.spacing.unit * 6,
+        maxWidth: theme.spacing.unit * 100,
         paddingBottom: theme.spacing.unit * 4,
         paddingTop: theme.spacing.unit * 4,
     },
@@ -17,10 +19,10 @@ const styles = theme => ({
 })
 
 
-function Form(props) {
+function FormContainer(props) {
     return (
         <Grid container alignItems="center">
-            <Grid item xs={12}>    
+            <Grid item xs={12}>
                 <Card className={props.classes.card}>
                     <CardContent>
                         <form method="post"
@@ -51,4 +53,4 @@ function Form(props) {
     );
 }
 
-export default withStyles(styles)(Form);
+export default withStyles(styles)(FormContainer)

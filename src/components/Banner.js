@@ -29,7 +29,7 @@ class Banner extends Component {
     return (
       <Grid container justify="center" alignItems="center" className={classes.bandeau}>
         <Grid item md={8} align="center" className={classes.bandeauTextContainer}>
-          <Typography variant="title" className={classes.bandeauText}>
+          <Typography variant="subtitle1" className={classes.bandeauText}>
             Nous contacter pour connaître nos programmes et tarifs
           </Typography>
         </Grid>

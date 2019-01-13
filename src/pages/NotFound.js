@@ -1,21 +1,10 @@
-import React, { Component } from 'react'
-import {withStyles, Grid, Typography} from '@material-ui/core/'
+import React from 'react'
+import SectionLayout from '../layouts/SectionLayout';
 
-const styles = () => ({
-  oops: {
-
-  }
-})
-
-class NotFound extends Component {
-  render() {
-    const {classes} = this.props
+function NotFound() {
     return (
-      <Grid container alignItems="center" className={classes.oops}>
-        <Typography>404</Typography>
-      </Grid>
+        <SectionLayout ctaText="Retour à l&#39;accueil"  ctaHref="/" noBanner title="404" subtitle="Oups ! Quelque chose s'est mal passé"/>
     );
-  }
 }
 
-export default withStyles(styles)(NotFound);
+export default NotFound

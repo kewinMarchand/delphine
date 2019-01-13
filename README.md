@@ -1,3 +1,10 @@
+#SRH Compétences
+
+Ce projet est visible [ici](https://serene-lamarr-8d622c.netlify.com/)
+
+L'interface d'admin est [à cette adresse](https://srhcompetences.prismic.io/documents/)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

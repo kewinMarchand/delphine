@@ -67,34 +67,35 @@ const typography = {
     fontWeightLight: 300,
     fontWeightRegular: 500,
     fontWeightMedium: 700,
-    display4 :{
+    useNextVariants: true,
+    h1 :{
         fontFamily: '"Playfair Display","Open Sans",sans-serif',
         fontSize: '3rem',
         fontWeight: 500,
     },
-    display3 :{
+    h2 :{
         fontFamily: '"Playfair Display","Open Sans",sans-serif',
         fontSize: '2.25rem',
         fontWeight: 300,
     },
-    display2 :{
+    h3 :{
         color: palette.textPrimary.main,
         fontSize: '1.50rem',
         fontWeight: 500,
     },
-    display1 :{
+    h4 :{
         fontSize: '1.375rem',
         fontWeight: 300,
     },
-    headline :{
+    h5 :{
         fontSize: '1.25rem',
         fontWeight: 300,
     },
-    title: {
+    h6: {
         fontSize: '1.25rem',
         fontWeight: 700,
     },
-    subheading : {
+    subtitle1 : {
         fontSize: '1.125rem',
         fontWeight: 300,
     },

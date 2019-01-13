@@ -2,14 +2,11 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import getAndStore from '../utils/getAndStore'
 
+import SectionLayout from '../layouts/SectionLayout'
 import ArticlesLoop from '../loops/ArticlesLoop'
 import Loader from '../components/Loader'
 
 class Articles extends Component {
-
-  componentWillMount() {
-    getAndStore(this.props.dispatch, 'article', 12, 1, 'STORE_NEWS')
-  }
 
   render() {
     const {storeNews} = this.props,
@@ -17,9 +14,9 @@ class Articles extends Component {
       ready = 0 !== News.length
     if (ready) {
       return (
-        <React.Fragment>
+        <SectionLayout>
           <ArticlesLoop news={News}/>
-        </React.Fragment> 
+        </SectionLayout>
       );
     }
     return <Loader/>;

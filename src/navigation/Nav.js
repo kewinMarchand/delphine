@@ -1,10 +1,9 @@
 import React from 'react'
 import SrhLink from '../components/SrhLink'
 import Menu from './Menu'
-import NavDrawer from './NavDrawer'
+import NavButton from './NavButton'
 import logo from '../assets/logo_rh.png'
-import {withStyles, AppBar, Button, Grid, Hidden, IconButton, Toolbar, Typography} from '@material-ui/core/'
-import MenuIcon from '@material-ui/icons/Menu'
+import {withStyles, AppBar, Button, Grid, Hidden, Toolbar, Typography} from '@material-ui/core/'
 
 const styles = theme => ({
   nav: {
@@ -16,43 +15,29 @@ const styles = theme => ({
     marginRight: theme.spacing.unit * 2,
     marginTop: theme.spacing.unit,
   },
-  root: {
-    flexGrow: 1,
-  },
   grow: {
     flexGrow: 1,
   },
-  menuButton: {
-
-  },
 });
 
-class Nav extends React.Component {
-  state = {
-    isDrawerOpen: false
-  }
-
-  toggleDrawer = () => {
-    this.setState({isDrawerOpen: !this.state.isDrawerOpen})
-  }
-
-  render() {
-    const { classes } = this.props;
+function Nav(props) {
     return (
-      <AppBar 
-        position="fixed" 
-        color="inherit"  
-        className={classes.nav}
+      <AppBar
+        position="fixed"
+        color="inherit"
+        className={props.classes.nav}
       >
-          <Toolbar> 
-            <img src={logo} alt="srh competences" className={classes.media} />
-            <SrhLink 
-              to="/" 
+          <Toolbar>
+            <img src={logo}
+               alt="srh competences"
+               className={props.classes.media}
+            />
+            <SrhLink
+              to="/"
               text={
-                <Typography 
-                  variant="h6" 
-                  color="inherit" 
-                  className={classes.grow}
+                <Typography
+                  variant="h6"
+                  color="inherit"
                 >
                   SRH&nbsp;Compétences
                 </Typography>}
@@ -60,9 +45,9 @@ class Nav extends React.Component {
             <Hidden smDown>
               <Grid container justify="space-evenly">
                 {Menu.map((menu, i) => (
-                  <Button 
-                    key={i} 
-                    variant="text" 
+                  <Button
+                    key={i}
+                    variant="text"
                     href={menu.href}
                     size="small"
                   >
@@ -71,27 +56,10 @@ class Nav extends React.Component {
                 ))}
               </Grid>
             </Hidden>
-            <Hidden mdUp>
-              <Grid container justify="flex-end">
-                <IconButton 
-                  className={classes.menuButton} 
-                  color="inherit" 
-                  aria-label="Menu"
-                  onClick={this.toggleDrawer}
-                >
-                  <MenuIcon />
-                </IconButton>
-              </Grid>
-            </Hidden>
-            <NavDrawer 
-              open={this.state.isDrawerOpen} 
-              onClose={this.toggleDrawer}
-              menu={Menu}
-            />
+            <NavButton/>
           </Toolbar>
       </AppBar>
     );
-  }
 }
 
 export default withStyles(styles)(Nav);

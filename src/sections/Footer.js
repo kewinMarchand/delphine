@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import SrhLink from '../components/SrhLink'
 import {withStyles, Grid, Typography} from '@material-ui/core/'
 
@@ -10,34 +10,26 @@ const styles = theme => ({
         position: 'relative',
         zIndex: 100,
     },
-    link: {
-        color: 'inherit',
-        textDecoration: 'none',
-        '&:hover': {
-            color: theme.palette.primary.main,
-        }
-    },
 })
 
-class Footer extends Component {
-  render() {
-    const {classes} = this.props
+function Footer(props) {
     return (
         <Grid 
             container 
             component="footer"
             alignItems="center"
-            className={classes.footer}
+            className={props.classes.footer}
         >
             <Grid item xs={12}>
                 <Typography align="center">
-                    © {new Date().getFullYear()} SOCIAL RH COMPETENCES.&nbsp;
-                    <SrhLink to="/mentions"  text="Mentions légales"/>
+                    © {new Date().getFullYear()}&nbsp;
+                    <SrhLink to="/"  text="SOCIAL RH COMPETENCES.&nbsp;"/>
+                    <SrhLink to="/mentions_legales"  text="Mentions légales&nbsp;-" variant="caption"/>
+                    <SrhLink to="/conditions_generales_utilisation"  text="&nbsp;C G U" variant="caption"/>
                 </Typography>
             </Grid>
         </Grid>
     );
-  }
 }
 
 export default withStyles(styles)(Footer)

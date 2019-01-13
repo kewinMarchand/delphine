@@ -1,107 +1,61 @@
-import React, { Component } from 'react'
-import apiEndpoint from '../utils/apiEndpoint'
-import Prismic from 'prismic-javascript'
-import {RichText} from 'prismic-reactjs'
+import React from 'react'
+import {connect} from 'react-redux'
+import getAndStore from '../utils/getAndStore'
+
+import ArticleLayout from '../layouts/ArticleLayout'
 import Loader from '../components/Loader'
-import {withStyles, Grid, Typography} from '@material-ui/core/'
 
-const styles = () => ({
-  header: {
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    height: 400,
-  },
-  overlay: {
-    backgroundColor: 'rgba(50,50,50,.5)',
-    height: '100%',
-  },
-  typography: {
-    color: '#fff',
-  },
-  media: {
-    height: 'auto',
-    maxWidth: '100%',
-  }
-})
+import {RichText} from 'prismic-reactjs'
 
-class ArticleSingle extends Component {
-  state = {
-    docs: null,
-  }
- 	
-  componentWillMount() { 
-    const uid = this.props.match.params.uid
+class ArticleSingle extends React.Component {
 
-    Prismic.api(apiEndpoint)
-      .then(api => {
-        api.query(Prismic.Predicates.at('document.type', 'article')
-      )
-      .then(response => {
-        if (response) {
-          for (let i in response.results) {
-            if (uid === response.results[i].uid) {
-              return response.results[i]
-            }
-          }
+    componentWillMount() {
+        if (0 === this.props.storeNews.News.length) {
+            getAndStore(this.props.dispatch, 'article', 6, 1, 'STORE_NEWS')
+        } else {
+            console.log('cache', this.props.storeNews.News)
         }
-        return null
-      })
-      .then(article => 
-        this.setState({ docs: article })
-      );
-    });
-  }
-
-  render() {
-    const {classes} = this.props,
-    {docs} = this.state,
-    doc = docs && docs.data
-
-    if (doc) {
-      return (
-        <Grid container alignItems="center">
-          <Grid container alignItems="center">
-            <Grid 
-              container 
-              alignItems="center"
-              justify="center"
-              component="header"
-              className={classes.header}
-              style={{
-                backgroundImage: 'url(' + doc.image_d_illustration.url + ')'
-              }}
-            >
-            <Grid 
-              container 
-              alignItems="center"
-              justify="center" 
-              className={classes.overlay}
-            >
-              <Typography 
-                variant="display1" 
-                className={classes.typography}
-              >
-                {RichText.asText(doc.titre)}
-              </Typography>
-            </Grid>
-            </Grid>
-          </Grid>
-          <Grid container alignItems="center">
-            {RichText.render(doc.texte_principal_de_l_article, this.linkResolver)}
-            {undefined !== doc.image_d_illustration_secondaire.url &&
-              <img 
-                alt="illustration"  
-                className={classes.media} 
-                src={doc.image_d_illustration_secondaire.url} 
-              />
-            }
-          </Grid>
-        </Grid>
-      );
     }
-    return <Loader/>;
-  }
+
+    render() {
+        const {News} = this.props.storeNews,
+            ready = 0 !== News.length
+        let doc = []
+
+        if (ready) {
+            for (let i = 0; i < News.length; i++) {
+                if (News[i].uid === this.props.match.params.uid) {
+                    doc = News[i].data
+                }
+            }
+        }
+
+        if(0 !== doc.length) {
+            console.log('article', doc)
+            return (
+                <ArticleLayout
+                    image_d_illustration={doc.image_d_illustration.url}
+                    titre={RichText.asText(doc.titre)}
+                    texte_principal={RichText.asText(doc.texte_principal_de_l_article)}
+                    image_d_illustration_secondaire={doc.image_d_illustration_secondaire}
+                />
+            );
+        }
+        return <Loader/>;
+    }
 }
 
-export default withStyles(styles)(ArticleSingle);
+const mapStateToProps = (state) => {
+    return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        dispatch: (action) => { dispatch(action) }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ArticleSingle)

@@ -46,7 +46,7 @@ class Header extends Component {
           <Grid container className={classes.headerContent}>
             <Grid item xs={12} className={classes.titles}>
               <Typography 
-                variant="display4" 
+                variant="h1"
                 align="center" 
                 color="inherit"
                 className={classes.typography}
@@ -55,7 +55,7 @@ class Header extends Component {
                 {doc.titre[0].text}
               </Typography>
               <Typography 
-                variant="display1" 
+                variant="h3"
                 align="center" 
                 color="inherit"
                 className={classes.typography}

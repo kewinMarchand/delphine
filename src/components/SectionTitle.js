@@ -4,8 +4,8 @@ import {withStyles, Grid, Typography} from '@material-ui/core/'
 
 const styles = theme => ({
   title: {
-    marginBottom: theme.spacing.unit * 6,
-    paddingTop: theme.spacing.unit * 2,
+    marginBottom: theme.spacing.unit * 4,
+    paddingTop: theme.spacing.unit * 4,
   },
   whiteTitle: {
     color: theme.palette.primary.contrastText,
@@ -20,7 +20,7 @@ class SectionTitle extends Component {
         className={`${classes.title} ${white ? classes.whiteTitle : ''}`}
       >  
         <Typography 
-          variant="display3" 
+          variant="h2"
           align="center"
           color="inherit"
         >

@@ -70,7 +70,7 @@ class Home extends Component {
             id="contact" 
             noCta
             noBanner
-            bgImage={doc.image_de_fond_section_contact.url}
+            bgImage={doc.image_de_fond_section_contact && doc.image_de_fond_section_contact.url}
             overlay
             white
             children={<Contact/>}

@@ -28,10 +28,11 @@ const styles = theme => ({
   contentContainer: {
     margin: 'auto',
     marginBottom: theme.spacing.unit * 4,
+    marginTop: theme.spacing.unit * 4,
     maxWidth: '85%',
     [theme.breakpoints.up('lg')]: {
       ...theme.mixins.gutters(),
-      maxWidth: 1280,
+      maxWidth: 1200,
     }
   }
 })
@@ -41,14 +42,13 @@ class SectionLayout extends Component {
     const {classes, id, bgImage, overlay, title, subtitle, white, children, noCta, ctaText, ctaHref, noBanner} = this.props
     return (
       <Grid 
-        container 
-        alignItems="center"
+        container
         component="section"
         className={classes.section}
         id={id}
         style={{backgroundImage: 'url( ' + bgImage + ')'}}
       >
-        <Grid container
+        <Grid container alignItems="flex-start"
           className={`${classes.container} ${overlay ? classes.overlay : ''}`}
         >
           {title && <SectionTitle title={title} white={white}/>}
