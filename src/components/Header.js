@@ -30,12 +30,13 @@ const styles = theme => ({
 
 class Header extends Component {
   render() {
-    const {classes, doc} = this.props
+    const {classes, doc, cta, titre, soustitre, bgImage} = this.props
+    console.log(bgImage)
     return (
       <Grid 
         container 
         className={classes.header}
-        style={{backgroundImage: 'url( ' + doc.image_principale.url + ')'}}
+        style={{backgroundImage: 'url( ' + (bgImage ? bgImage : doc.image_principale.url) + ')'}}
       >
         <Grid 
           container
@@ -52,7 +53,7 @@ class Header extends Component {
                 className={classes.typography}
                 gutterBottom
               >
-                {doc.titre[0].text}
+                {titre && titre}
               </Typography>
               <Typography 
                 variant="h3"
@@ -60,10 +61,10 @@ class Header extends Component {
                 color="inherit"
                 className={classes.typography}
               >
-                {doc.sous_titre[0].text}
+                {soustitre && soustitre}
               </Typography>
             </Grid>
-            <HeaderCtas doc={doc}/>
+            {cta && <HeaderCtas doc={doc}/>}
           </Grid>
         </Grid>
       </Grid>
@@ -73,6 +74,10 @@ class Header extends Component {
 
 Header.propTypes = {
   doc: PropTypes.object.isRequired,
+  cta: PropTypes.bool,
+  titre: PropTypes.string,
+  soustitre: PropTypes.string,
+  bgImage: PropTypes.string,
 };
 
 export default withStyles(styles)(Header)

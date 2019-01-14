@@ -11,8 +11,10 @@ const getAndStore = (dispatch, docType, limit, page, actionType) => {
       if (response) {
         const action = {type: actionType, value: response.results}
         dispatch(action)
+        return response.results
       }
     })
+    .then(datas => console.log(docType, datas))
   });       
 }
 

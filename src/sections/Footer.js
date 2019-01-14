@@ -5,7 +5,7 @@ import {withStyles, Grid, Typography} from '@material-ui/core/'
 const styles = theme => ({
     footer: {
         boxShadow: '0px -5px 10px 0px rgba(0,84,164,0.18)',
-        minWidth:'100vw',
+        minWidth:'100%',
         padding: theme.spacing.unit * 3,
         position: 'relative',
         zIndex: 100,

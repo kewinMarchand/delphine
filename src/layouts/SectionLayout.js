@@ -39,7 +39,7 @@ const styles = theme => ({
 
 class SectionLayout extends Component {
   render() {
-    const {classes, id, bgImage, overlay, title, subtitle, white, children, noCta, ctaText, ctaHref, noBanner} = this.props
+    const {classes, id, bgImage, overlay, title, subtitle, white, children, noCta, ctaText, ctaHref, noBanner, noAnchor} = this.props
     return (
       <Grid 
         container
@@ -56,7 +56,7 @@ class SectionLayout extends Component {
           <Grid container className={classes.contentContainer}>
             {children}
           </Grid>
-          {!noCta && <Cta text={ctaText} href={ctaHref}/>}
+          {!noCta && <Cta text={ctaText} href={ctaHref} noAnchor={noAnchor}/>}
           {!noBanner && <Banner/>}
         </Grid>
       </Grid>
@@ -65,7 +65,7 @@ class SectionLayout extends Component {
 }
 
 SectionLayout.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.object,
   id: PropTypes.string,
   bgImage: PropTypes.string,
   overlay: PropTypes.bool,
@@ -75,6 +75,7 @@ SectionLayout.propTypes = {
   ctaHref: PropTypes.string,
   noBanner: PropTypes.bool,
   white: PropTypes.bool,
+  noAnchor: PropTypes.bool,
 };
 
 export default withStyles(styles)(SectionLayout);

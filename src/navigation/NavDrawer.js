@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
+import SrhLink from '../components/SrhLink'
 import {withStyles, Button, Card, CardContent, CardMedia, Drawer, List, ListItem} from '@material-ui/core/'
 import logo from '../assets/logo_rh.png'
 
@@ -46,12 +48,11 @@ function NavDrawer(props) {
                 <Button 
                     key={i} 
                     variant="text" 
-                    href={menu.href}
                     size="small"
                     fullWidth
                     color="inherit"
                   >
-                    {menu.text}
+                    <SrhLink to={menu.href} text={menu.text} anchor/>
                   </Button>
               </ListItem>  
             ))}

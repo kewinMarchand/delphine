@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import {withStyles, Button, Grid, Typography} from '@material-ui/core/'
+
+import Cta from './Cta'
+import {withStyles, Grid, Typography} from '@material-ui/core/'
 
 const styles = theme => ({
   bandeau: {
@@ -34,13 +36,7 @@ class Banner extends Component {
           </Typography>
         </Grid>
         <Grid item md={4} align="center">
-          <Button 
-            variant="contained"
-            color="secondary"
-            href="/#contact"
-          >
-            contactez-nous
-          </Button>
+        <Cta href="#contact" text="contactez-nous"/>
         </Grid>
       </Grid>
     );

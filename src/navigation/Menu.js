@@ -1,11 +1,7 @@
 const Menu = [
   {
-    href:"/",
-    text:"accueil"
-  },
-  {
-    href:"#articles",
-    text:"articles"
+    href:"#apropos",
+    text:"à propos"
   },
   {
     href:"#formations",
@@ -14,6 +10,10 @@ const Menu = [
   {
     href:"#prestations",
     text:"prestations"
+  },
+  {
+    href:"#articles",
+    text:"articles"
   },
   {
     href:"#contact",

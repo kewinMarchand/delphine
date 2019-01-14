@@ -2,8 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import getAndStore from '../utils/getAndStore'
 
-import ArticleLayout from '../layouts/ArticleLayout'
+import PageLayout from '../layouts/PageLayout'
+import SectionLayout from '../layouts/SectionLayout'
 import Loader from '../components/Loader'
+
+import {Grid, Typography} from '@material-ui/core/'
 
 import {RichText} from 'prismic-reactjs'
 
@@ -12,9 +15,7 @@ class ArticleSingle extends React.Component {
     componentWillMount() {
         if (0 === this.props.storeNews.News.length) {
             getAndStore(this.props.dispatch, 'article', 6, 1, 'STORE_NEWS')
-        } else {
-            console.log('cache', this.props.storeNews.News)
-        }
+        } 
     }
 
     render() {
@@ -31,14 +32,30 @@ class ArticleSingle extends React.Component {
         }
 
         if(0 !== doc.length) {
-            console.log('article', doc)
             return (
-                <ArticleLayout
-                    image_d_illustration={doc.image_d_illustration.url}
+                <PageLayout 
+                    ctaText="Retour à l&#39;accueil"  
+                    ctaHref="/" 
+                    noAnchor 
                     titre={RichText.asText(doc.titre)}
-                    texte_principal={RichText.asText(doc.texte_principal_de_l_article)}
-                    image_d_illustration_secondaire={doc.image_d_illustration_secondaire}
-                />
+                    soustitre="SRH Compétences"
+                    bgImage={doc.image_d_illustration.url}
+                >
+                    <SectionLayout noCta noBanner>
+                        <Grid item xs={12}>
+                            <Typography>
+                                {RichText.asText(doc.texte_principal_de_l_article)}
+                            </Typography>
+                            {undefined !== doc.image_d_illustration_secondaire.url && 
+                                <img 
+                                    src={doc.image_d_illustration_secondaire.url} 
+                                    alt="illustration secondaire"
+                                />
+                            }
+                        </Grid>
+                    </SectionLayout>
+                </PageLayout>
+                
             );
         }
         return <Loader/>;

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import getAndStore from '../utils/getAndStore'
 
-import Header from '../components/Header'
-import Section from '../layouts/SectionLayout'
+import PageLayout from '../layouts/PageLayout'
+import SectionLayout from '../layouts/SectionLayout'
 import About from '../sections/About'
 import ArticlesLoop from '../loops/ArticlesLoop'
 import FormationsLoop from '../loops/FormationsLoop'
@@ -14,10 +14,19 @@ import Loader from '../components/Loader'
 class Home extends Component {
 
   componentWillMount() {
-    getAndStore(this.props.dispatch, 'page_daccueil', 100, 1, 'STORE_DATAS')
-    getAndStore(this.props.dispatch, 'article', 6, 1, 'STORE_NEWS')
-    getAndStore(this.props.dispatch, 'formations', 3, 1, 'STORE_TRAININGS')
-    getAndStore(this.props.dispatch, 'prestations', 3, 1, 'STORE_BENEFITS')
+    const {dispatch, storeDatas, storeNews, storeTrainings, storeBenefits} = this.props
+    if(0 === storeDatas.Datas.length) {
+      getAndStore(dispatch, 'page_daccueil', 100, 1, 'STORE_DATAS')
+    }
+    if(0 === storeNews.News.length) {
+      getAndStore(dispatch, 'article', 6, 1, 'STORE_NEWS')
+    }
+    if(0 === storeTrainings.Trainings.length) {
+      getAndStore(dispatch, 'formations', 3, 1, 'STORE_TRAININGS')
+    }
+    if(0 === storeBenefits.Benefits.length) {
+      getAndStore(dispatch, 'prestations', 3, 1, 'STORE_BENEFITS')
+    }
   }
 
   render() {
@@ -30,41 +39,43 @@ class Home extends Component {
 
     if (ready) {
       const doc = Datas[0].data
-      console.log('page accueil', doc)
-      console.log('articles', News)
-      console.log('formations', Trainings)
-      console.log('prestations', Benefits)
       return (
-        <React.Fragment>
-          <Header doc={doc}/>
-          <Section 
+        <PageLayout
+          doc={doc} 
+          titre={doc.titre[0].text} 
+          soustitre={doc.sous_titre[0].text} 
+          cta
+          noCta
+        >
+          <SectionLayout 
             id="apropos"
             ctaText="decouvrez nos formations"
-            ctaHref="/#formations"
+            ctaHref="#formations"
             children={<About doc={doc}/>}
           />
-          <Section 
+          <SectionLayout 
             title="Nos formations" 
             id="formations"
             ctaText="notre offre conseil"
-            ctaHref="/#prestations"
+            ctaHref="#prestations"
             children={<FormationsLoop trainings={Trainings}/>}
           />
-          <Section 
+          <SectionLayout 
             title="Nos prestations de conseil" 
             id="prestations"
             ctaText="l&#39;actualité social rh"
-            ctaHref="/#articles"
+            ctaHref="#articles"
             children={<PrestationsLoop benefits={Benefits}/>}
           />
-          <Section 
+          <SectionLayout 
             title="L&#39;actualité Social RH" 
             id="articles" 
             ctaText="voir tous les articles"
             ctaHref="/articles"
+            noAnchor
             children={<ArticlesLoop news={News} section/>}
           />
-          <Section 
+          <SectionLayout 
             title="Contactez-nous" 
             subtitle="pour connaître nos programmes et tarifs" 
             id="contact" 
@@ -75,7 +86,7 @@ class Home extends Component {
             white
             children={<Contact/>}
           />
-        </React.Fragment>
+        </PageLayout>
       );
     }
     return <Loader/>;
