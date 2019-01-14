@@ -41,6 +41,7 @@ class Nav extends React.Component {
           className={this.props.classes.nav}
         >
             <Toolbar>
+              <Grid container alignItems="center">
               <Link to="/">
                 <img src={logo}
                   alt="srh competences"
@@ -53,6 +54,7 @@ class Nav extends React.Component {
                 text={titre}
                 variant="h6"
               />
+              </Grid>
               <Hidden smDown>
                 <Grid container justify="space-evenly">
                   {Menu.map((menu, i) => (

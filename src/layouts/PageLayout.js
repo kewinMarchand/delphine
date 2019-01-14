@@ -13,7 +13,6 @@ import {withStyles, Grid} from '@material-ui/core/'
 
 const styles = theme => ({
   page: {
-
   },
 })
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {RichText} from 'prismic-reactjs'
 import SrhLink from '../components/SrhLink'
 import Loader from '../components/Loader'
-import {withStyles, Card, CardContent, CardMedia, Typography} from '@material-ui/core/'
+import {withStyles, Card, CardContent, CardHeader, CardMedia, Typography} from '@material-ui/core/'
 
 const styles = theme => ({
   link: {
@@ -11,11 +11,17 @@ const styles = theme => ({
     textDecoration: 'none',
   },
   media: {
-    height: theme.spacing.unit * 25,
-    [theme.breakpoints.up('sm')]: {
-      height: theme.spacing.unit * 50,
-    }
+    paddingTop: '62.25%',
+    width: '100%',
   },
+  content: {
+    maxHeight: 500,
+    overflow: 'hidden',
+  },
+  text: {
+    marginBottom: theme.spacing.unit * 2,
+    textOverflow: 'ellipsis',
+  }
 })
 
 class ArticlePreview extends Component {
@@ -23,22 +29,26 @@ class ArticlePreview extends Component {
     const {classes, doc} = this.props
     const {data} = doc
     if (doc) {
+      console.log(doc)
       return (
         <Card elevation={4}>
           <CardMedia
             image={data.image_d_illustration.url}
             className={classes.media}
           />
-          <CardContent>
-            <Typography 
-              variant="h4"
-            >
-              {RichText.asText(data.titre)}
+          <CardHeader
+            title={RichText.asText(data.titre)}
+            />
+          <CardContent className={classes.content}>
+            <Typography className={classes.text}>
+              {RichText
+                .asText(data.texte_principal_de_l_article)
+                .substring(0, 200) + " (...)"}
             </Typography>
             <SrhLink 
-              to={'/articles/' + doc.uid} 
-              text="Lire l&#39;article >>" 
-              primary
+                to={'/articles/' + doc.uid} 
+                text="Lire l&#39;article >>" 
+                primary
             />
           </CardContent>
         </Card>
