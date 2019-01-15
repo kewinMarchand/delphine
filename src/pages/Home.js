@@ -52,21 +52,21 @@ class Home extends Component {
             ctaText="decouvrez nos formations"
             ctaHref="#formations"
             children={<About doc={doc}/>}
-          />
+          />,
           <SectionLayout 
             title="Nos formations" 
             id="formations"
             ctaText="notre offre conseil"
             ctaHref="#prestations"
             children={<FormationsLoop trainings={Trainings}/>}
-          />
+          />,
           <SectionLayout 
             title="Nos prestations de conseil" 
             id="prestations"
             ctaText="l&#39;actualité social rh"
             ctaHref="#articles"
             children={<PrestationsLoop benefits={Benefits}/>}
-          />
+          />,
           <SectionLayout 
             title="L&#39;actualité Social RH" 
             id="articles" 
@@ -74,7 +74,7 @@ class Home extends Component {
             ctaHref="/articles"
             noAnchor
             children={<ArticlesLoop news={News} section/>}
-          />
+          />,
           <SectionLayout 
             title="Contactez-nous" 
             subtitle="pour connaître nos programmes et tarifs" 

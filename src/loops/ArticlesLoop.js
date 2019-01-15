@@ -11,7 +11,7 @@ class ArticlesLoop extends Component {
       <Grid container spacing={40}>
         {news.map((doc, i) => 
           <Grid key={i} item xs={12} md={i === 0 ? 12 : 6} lg={4}>
-            <ArticlePreview doc={doc}/>  
+            <ArticlePreview doc={doc} i={i}/>  
           </Grid>   
         )}
       </Grid>
