@@ -56,7 +56,7 @@ class PageLayout extends Component {
 }
 
 PageLayout.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object,
   bgImage: PropTypes.string,
   titre: PropTypes.string,
   soustitre: PropTypes.string,

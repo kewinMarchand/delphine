@@ -19,7 +19,8 @@ const styles = theme => ({
   },
   header: {
     alignItems: 'flex-start',
-    minHeight: theme.spacing.unit * 13,
+    minHeight: theme.spacing.unit * 10,
+    paddingBottom: 0,
   },
   content: {
     maxHeight: theme.spacing.unit * 60,
@@ -64,7 +65,7 @@ class ArticlePreview extends Component {
               wrap={isWidthUp('md', width) ? 'nowrap' : "wrap"}
             >
               <Typography className={classes.text}>
-                Delphine witkowsky
+                Delphine Witkowsky
               </Typography>
               <Typography className={classes.text}>
                 {0 < doc.tags.length && doc.data.tags}
@@ -76,11 +77,11 @@ class ArticlePreview extends Component {
             <Typography className={classes.contentText}>
               {RichText
                 .asText(doc.data.texte_principal_de_l_article)
-                .substring(0, 150) + " (...)"}
+                .substring(0, isWidthUp('md', width) ? 300 : 150) + " (...)"}
             </Typography>
             <SrhLink 
                 to={'/articles/' + doc.uid} 
-                text="Lire l&#39;article&nbsp;&nbsp;&#8827;&#8827;" 
+                text="Lire l&#39;article&nbsp;&nbsp;>>" 
                 primary
             />
           </CardContent>

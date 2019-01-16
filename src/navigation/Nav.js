@@ -7,11 +7,9 @@ import {Link} from 'react-router-dom'
 import SrhLink from '../components/SrhLink'
 import Menu from './Menu'
 import NavButton from './NavButton'
-import {withStyles, AppBar, Grid, Hidden, Toolbar} from '@material-ui/core/'
+import {withStyles, AppBar, Grid, Hidden, Toolbar, Drawer} from '@material-ui/core/'
 
 const styles = theme => ({
-  nav: {
-  },
   media: {
     height: theme.spacing.unit * 10, 
     marginBottom: theme.spacing.unit,
@@ -21,6 +19,32 @@ const styles = theme => ({
 });
 
 class Nav extends React.Component {
+  state = {
+    oldScroll: 0,
+    newScroll: 0,
+    scrolled: false,
+    visible: true,
+  }
+
+  updateScroll() {
+    let scroll = window.scrollY;
+    if (this.state.newScroll !== 0) {
+        this.setState({oldScroll: this.state.newScroll})
+    }
+    this.setState({newScroll: scroll})
+    if (scroll > 500) {
+        if (this.state.newScroll <= this.state.oldScroll) {
+            this.setState({visible: true})
+        } else {
+            this.setState({visible: false})
+        }
+    }
+  }
+
+  componentDidMount() {
+      this.updateScroll()
+      window.addEventListener('scroll', this.updateScroll.bind(this))
+  }
 
   componentWillMount() {
     const {dispatch, storeDatas} = this.props
@@ -35,42 +59,48 @@ class Nav extends React.Component {
       const titre = Datas[0].data.titre[0].text
       const logo = Datas[0].data.logo.url
       return (
-        <AppBar
-          position="fixed"
-          color="inherit"
-          className={this.props.classes.nav}
-        >
-            <Toolbar>
-              <Grid container alignItems="center">
-              <Link to="/">
-                <img src={logo}
-                  alt="srh competences"
-                  className={this.props.classes.media}
+        <Drawer anchor="top" 
+          open={this.state.visible} 
+          transitionDuration={500} 
+          variant="persistent"
+        > 
+          <AppBar
+            position="relative"
+            color="inherit"
+            className={this.props.classes.nav}
+          >
+              <Toolbar>
+                <Grid container alignItems="center">
+                <Link to="/">
+                  <img src={logo}
+                    alt="srh competences"
+                    className={this.props.classes.media}
+                  />
+                </Link>
+                <SrhLink
+                  anchor
+                  to="#top"
+                  text={titre}
+                  variant="h6"
                 />
-              </Link>
-              <SrhLink
-                anchor
-                to="#top"
-                text={titre}
-                variant="h6"
-              />
-              </Grid>
-              <Hidden smDown>
-                <Grid container justify="space-evenly">
-                  {Menu.map((menu, i) => (
-                    <SrhLink
-                      key={i}
-                      variant="body1"
-                      to={menu.href}
-                      text={menu.text}
-                      anchor
-                    />
-                  ))}
                 </Grid>
-              </Hidden>
-              <NavButton/>
-            </Toolbar>
-        </AppBar>
+                <Hidden smDown>
+                  <Grid container justify="space-evenly">
+                    {Menu.map((menu, i) => (
+                      <SrhLink
+                        key={i}
+                        variant="body1"
+                        to={menu.href}
+                        text={menu.text}
+                        anchor
+                      />
+                    ))}
+                  </Grid>
+                </Hidden>
+                <NavButton/>
+              </Toolbar>
+          </AppBar>
+        </Drawer> 
       );
     }
     return false
