@@ -38,9 +38,6 @@ class ArticlePreview extends Component {
     const {classes, doc, i, width} = this.props
     if (doc) {
       console.log(doc)
-      console.log(isWidthUp('sm', width))
-      console.log(i)
-      console.log(isWidthUp('sm', width) && i === 0)
       const options = 
         isWidthUp('lg', width) ? 
         {day: 'numeric', month: 'numeric', year: 'numeric'} :

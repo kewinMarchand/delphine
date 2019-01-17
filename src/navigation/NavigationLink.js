@@ -1,4 +1,6 @@
 import React from 'react'
+import {compose} from 'recompose'
+import {withRouter} from 'react-router-dom'
 
 import {Link} from 'react-router-dom'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -19,6 +21,10 @@ const styles = theme => ({
       color: theme.palette.secondary.main,
     }
   },
+  activeLink: {
+      color: "green",
+      textDeoration: 'underline',
+  },
   span: {
     display: 'inline-block',
   },
@@ -29,8 +35,9 @@ const styles = theme => ({
   }
 });
 
-function SrhLink(props) {
-  const { classes, to, text, primary, variant, anchor} = props;
+function NavigationLink(props) {
+  const { classes, to, text, primary, variant, anchor, history} = props;
+  console.log('NavigationLink',props)
 
   const LinkText = (props) => {
     return (
@@ -49,7 +56,7 @@ function SrhLink(props) {
     return (
       <AnchorLink
         href={to}  
-        className={`${classes.link} ${primary ? classes.linkPrimary : ''}`}
+        className={`${classes.link} ${primary ? classes.linkPrimary : ''} ${history.location.hash === to ? classes.activeLink : ""}`}
       >
         <LinkText/>
       </AnchorLink>
@@ -66,4 +73,7 @@ function SrhLink(props) {
   }
 }
 
-export default withStyles(styles)(SrhLink);
+export default compose(
+    withRouter,
+    withStyles(styles)
+)(NavigationLink)
